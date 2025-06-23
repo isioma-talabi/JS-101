@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Greetings (If-Statements)</title>
+  </head>
+  <body>
+    <main>
+      <h1 id="greeting-holder"></h1>
+    </main>
+
+    <script>
+      let now = new Date();
+      let hours = now.getHours();
+      let name = "Isioma"
+
+      const greetingHolder = document.getElementById("greeting-holder");
+
+      if (hours >= 6 && hours < 12) {
+        console.log("Good Morning");
+        greetingHolder.innerHTML = `Good Morning, ${name}! It's a great day to have a great day!`;
+      } else if (hours >= 12 && hours < 17) {
+        console.log("Good afternoon");
+        greetingHolder.innerHTML = `Good Afternoon, ${name}! Remember, do not be afraid. Jesus is on it!`;
+      } else {
+        console.log("Good Night Isioma!");
+        greetingHolder.innerHTML = `Good Night ${name}! Kickback and enjoy the evening with family.`
+      }
+    </script>
+  </body>
+</html>

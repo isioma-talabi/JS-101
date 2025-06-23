@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+
+    <style>
+      button {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Rock Paper Scissors</h1>
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+    </main>
+
+    <script>
+      const rock = document.getElementById("rock");
+      const paper = document.getElementById("paper");
+      const scissors = document.getElementById("scissors");
+
+      const potentialMoves = ["Rock", "Paper", "Scissors"];
+      let result = "";
+
+      //   For Rock
+
+      rock.addEventListener("click", function () {
+        let randomComputerPick = Math.floor(Math.random() * 3);
+        let computerMove = potentialMoves[randomComputerPick];
+        result = "";
+        if (computerMove === "Rock") {
+          result = "tie";
+          console.log(result);
+          alert(
+            `You picked rock. Computer picked ${computerMove}. You both tie!`
+          );
+        } else if (computerMove === "Paper") {
+          result = "lose";
+          console.log(result);
+          alert(
+            `You picked rock. Computer picked ${computerMove}. Paper covers Rock! You lose!`
+          );
+        } else if (computerMove === "Scissors") {
+          result = "win";
+          console.log(result);
+          alert(
+            `You picked rock. Computer picked ${computerMove}. Rock crushes scissors! You win!`
+          );
+        }
+      });
+
+      // For Paper
+
+      paper.addEventListener("click", function () {
+        let randomComputerPick = Math.floor(Math.random() * 3);
+        let computerMove = potentialMoves[randomComputerPick];
+        result = "";
+        if (computerMove === "Rock") {
+          result = "win";
+          console.log(result);
+          alert(
+            `You picked paper. Computer picked ${computerMove}. Paper covers Rock! You win!`
+          );
+        } else if (computerMove === "Paper") {
+          result = "tie";
+          console.log(result);
+          alert(
+            `You picked paper. Computer picked ${computerMove}. You both tie!`
+          );
+        } else if (computerMove === "Scissors") {
+          result = "lose";
+          console.log(result);
+          alert(
+            `You picked paper. Computer picked ${computerMove}. Scissors cuts Paper! You lose!`
+          );
+        }
+      });
+
+      //   For Scissors
+
+      scissors.addEventListener("click", function () {
+        let randomComputerPick = Math.floor(Math.random() * 3);
+        let computerMove = potentialMoves[randomComputerPick];
+        result = "";
+        if (computerMove === "Rock") {
+          result = "lose";
+          console.log(result);
+          alert(
+            `You picked Scissors. Computer picked ${computerMove}. Rock crushes Scissors! You lose!`
+          );
+        } else if (computerMove === "Paper") {
+          result = "win";
+          console.log(result);
+          alert(
+            `You picked Scissors. Computer picked ${computerMove}. Scissors cuts Paper! You Win`
+          );
+        } else if (computerMove === "Scissors") {
+          result = "tie";
+          console.log(result);
+          alert(
+            `You picked Scissors. Computer picked ${computerMove}. You both tie!`
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

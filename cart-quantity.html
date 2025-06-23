@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+
+    <style>
+      button {
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Cart Quantity</h1>
+    <button id="show-quantity">Show Quantity</button>
+    <button id="add-to-cart">Add to Cart</button>
+    <button id="add-two">+2</button>
+    <button id="add-three">+3</button>
+    <button id="reset-cart">Reset Cart</button>
+
+    <script>
+      let cartValue = 0;
+
+      const showQuantityBtn = document.getElementById("show-quantity");
+      const addToCart = document.getElementById("add-to-cart");
+      const addTwo = document.getElementById("add-two");
+      const addThree = document.getElementById("add-three");
+      const resetCart = document.getElementById("reset-cart");
+
+      showQuantityBtn.addEventListener("click", function () {
+        console.log("Cart Quantity: ", cartValue);
+      });
+
+      addToCart.addEventListener("click", function () {
+        console.log("Cart Quantity: ", (cartValue = cartValue + 1));
+      });
+
+      addTwo.addEventListener("click", function () {
+        console.log("Cart Quantity: ", (cartValue = cartValue + 2));
+      });
+
+      addThree.addEventListener("click", function () {
+        console.log("Cart Quantity: ", (cartValue = cartValue + 3));
+      });
+
+      resetCart.addEventListener("click", function () {
+        cartValue = 0;
+        console.log("Cart was reset");
+        console.log("Cart Quantity: ", cartValue);
+      });
+    </script>
+  </body>
+</html>

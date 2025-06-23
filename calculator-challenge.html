@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+
+    <style>
+      button {
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <main>
+      <button id="one">1</button>
+      <button id="two">2</button>
+      <button id="three">3</button>
+      <button id="plus">+</button>
+
+      <br /><br />
+
+      <button id="four">4</button>
+      <button id="five">5</button>
+      <button id="six">6</button>
+      <button id="minus">-</button>
+
+      <br /><br />
+
+      <button id="seven">7</button>
+      <button id="eight">8</button>
+      <button id="nine">9</button>
+      <button id="multiplication">*</button>
+
+      <br /><br />
+
+      <button id="zero">0</button>
+      <button id="dot">.</button>
+      <button id="equals">=</button>
+      <button id="divide">/</button>
+
+      <br /><br />
+
+      <button id="clear">Clear</button>
+    </main>
+
+    <script>
+      let calculation = "";
+      const one = document.getElementById("one");
+      const two = document.getElementById("two");
+      const three = document.getElementById("three");
+      const four = document.getElementById("four");
+      const five = document.getElementById("five");
+      const six = document.getElementById("six");
+      const seven = document.getElementById("seven");
+      const eight = document.getElementById("eight");
+      const nine = document.getElementById("nine");
+      const zero = document.getElementById("zero");
+      const plus = document.getElementById("plus");
+      const minus = document.getElementById("minus");
+      const multiplication = document.getElementById("multiplication");
+      const dot = document.getElementById("dot");
+      const equals = document.getElementById("equals");
+      const divide = document.getElementById("divide");
+      const clear = document.getElementById("clear");
+
+      one.addEventListener("click", function () {
+        calculation = calculation + "1";
+        console.log(calculation);
+      });
+
+      two.addEventListener("click", function () {
+        calculation = calculation + "2";
+        console.log(calculation);
+      });
+
+      three.addEventListener("click", function () {
+        calculation = calculation + "3";
+        console.log(calculation);
+      });
+
+      four.addEventListener("click", function () {
+        calculation = calculation + "4";
+        console.log(calculation);
+      });
+
+      five.addEventListener("click", function () {
+        calculation = calculation + "5";
+        console.log(calculation);
+      });
+
+      six.addEventListener("click", function () {
+        calculation = calculation + "6";
+        console.log(calculation);
+      });
+
+      seven.addEventListener("click", function () {
+        calculation = calculation + "7";
+        console.log(calculation);
+      });
+
+      eight.addEventListener("click", function () {
+        calculation = calculation + "8";
+        console.log(calculation);
+      });
+
+      nine.addEventListener("click", function () {
+        calculation = calculation + "9";
+        console.log(calculation);
+      });
+
+      zero.addEventListener("click", function () {
+        calculation = calculation + "0";
+        console.log(calculation);
+      });
+
+      plus.addEventListener("click", function () {
+        calculation = calculation + " + ";
+        console.log(calculation);
+      });
+
+      minus.addEventListener("click", function () {
+        calculation = calculation + " - ";
+        console.log(calculation);
+      });
+
+      multiplication.addEventListener("click", function () {
+        calculation = calculation + " * ";
+        console.log(calculation);
+      });
+
+      dot.addEventListener("click", function () {
+        calculation = calculation + ".";
+        console.log(calculation);
+      });
+
+      divide.addEventListener("click", function () {
+        calculation = calculation + " / ";
+        console.log(calculation);
+      });
+
+      equals.addEventListener("click", function () {
+        calculation = eval(calculation);
+        console.log(calculation);
+      });
+
+      clear.addEventListener("click", function () {
+        calculation = "";
+        console.log("Cleared");
+      });
+    </script>
+  </body>
+</html>
