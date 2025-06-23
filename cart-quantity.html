@@ -19,6 +19,8 @@
     <button id="add-three">+3</button>
     <button id="reset-cart">Reset Cart</button>
 
+    <!-- Add remove from cart, -2 and -3 buttons and add JS functionalities that will check cart does not go below 0 -->
+
     <script>
       let cartValue = 0;
 
@@ -32,16 +34,34 @@
         console.log("Cart Quantity: ", cartValue);
       });
 
+      // Add One
       addToCart.addEventListener("click", function () {
-        console.log("Cart Quantity: ", (cartValue = cartValue + 1));
+        if (cartValue < 10) {
+          console.log("Cart Quantity: ", (cartValue = cartValue + 1));
+        } else {
+          alert("10 items in the cart! The cart is full!");
+        }
       });
+
+      // Add Two
 
       addTwo.addEventListener("click", function () {
-        console.log("Cart Quantity: ", (cartValue = cartValue + 2));
+        if (cartValue < 10) {
+          console.log("Cart Quantity: ", (cartValue = cartValue + 2));
+        } else {
+          alert("10 items in the cart! The cart is full!");
+        }
       });
 
+      // Add Three
+
       addThree.addEventListener("click", function () {
-        console.log("Cart Quantity: ", (cartValue = cartValue + 3));
+        if (cartValue < 9) {
+          console.log("Cart Quantity: ", (cartValue = cartValue + 3));
+        } else if ((cartValue = 9)) {
+          alert("Can only have 10 items in the cart!");
+          console.log("Cart Quantity: ", cartValue);
+        }
       });
 
       resetCart.addEventListener("click", function () {
