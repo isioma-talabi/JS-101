@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coin Flip Game (Ternary Operator)</title>
+  </head>
+  <body>
+    <main></main>
+    <script>
+      let guess = "Heads";
+      let randomNumber = Math.random();
+      let result = randomNumber < 0.5 ? "Heads" : "Tails";
+      let guessGame = guess === result ? "You win!" : "You Lose!";
+
+      console.log(result);
+      console.log(guessGame);
+    </script>
+  </body>
+</html>
