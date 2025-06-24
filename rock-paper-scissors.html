@@ -27,85 +27,73 @@
       const potentialMoves = ["Rock", "Paper", "Scissors"];
       let result = "";
 
+      // Functions
+      function pickComputerMove() {
+        let randomComputerPick = Math.floor(Math.random() * 3);
+        let computerMove = potentialMoves[randomComputerPick];
+        return computerMove;
+      }
+
+      function playGame(playerMove) {
+        const computerMove = pickComputerMove();
+        result = "";
+
+        if (playerMove === "Rock") {
+          if (computerMove === "Rock") {
+            result = "You both tie!";
+            console.log(result);
+          } else if (computerMove === "Paper") {
+            result = "Paper covers Rock! You lose!";
+            console.log(result);
+          } else if (computerMove === "Scissors") {
+            result = "Rock crushes scissors! You win!";
+            console.log(result);
+          }
+        } else if (playerMove === "Paper") {
+          if (computerMove === "Rock") {
+            result = "Paper covers Rock! You win!";
+            console.log(result);
+          } else if (computerMove === "Paper") {
+            result = "You both tie!";
+            console.log(result);
+          } else if (computerMove === "Scissors") {
+            result = "Scissors cuts Paper! You lose!";
+            console.log(result);
+          }
+        } else if (playerMove === "Scissors") {
+          if (computerMove === "Rock") {
+            result = "Rock crushes Scissors! You lose!";
+            console.log(result);
+          } else if (computerMove === "Paper") {
+            result = "Scissors cuts Paper! You Win";
+            console.log(result);
+          } else if (computerMove === "Scissors") {
+            result = "You both tie!";
+            console.log(result);
+          }
+        }
+
+        alert(
+          `You picked ${playerMove}. Computer picked ${computerMove}. ${result}`
+        );
+      }
+
       //   For Rock
 
       rock.addEventListener("click", function () {
-        let randomComputerPick = Math.floor(Math.random() * 3);
-        let computerMove = potentialMoves[randomComputerPick];
-        result = "";
-        if (computerMove === "Rock") {
-          result = "tie";
-          console.log(result);
-          alert(
-            `You picked rock. Computer picked ${computerMove}. You both tie!`
-          );
-        } else if (computerMove === "Paper") {
-          result = "lose";
-          console.log(result);
-          alert(
-            `You picked rock. Computer picked ${computerMove}. Paper covers Rock! You lose!`
-          );
-        } else if (computerMove === "Scissors") {
-          result = "win";
-          console.log(result);
-          alert(
-            `You picked rock. Computer picked ${computerMove}. Rock crushes scissors! You win!`
-          );
-        }
+        playGame("Rock");
       });
 
       // For Paper
 
       paper.addEventListener("click", function () {
-        let randomComputerPick = Math.floor(Math.random() * 3);
-        let computerMove = potentialMoves[randomComputerPick];
-        result = "";
-        if (computerMove === "Rock") {
-          result = "win";
-          console.log(result);
-          alert(
-            `You picked paper. Computer picked ${computerMove}. Paper covers Rock! You win!`
-          );
-        } else if (computerMove === "Paper") {
-          result = "tie";
-          console.log(result);
-          alert(
-            `You picked paper. Computer picked ${computerMove}. You both tie!`
-          );
-        } else if (computerMove === "Scissors") {
-          result = "lose";
-          console.log(result);
-          alert(
-            `You picked paper. Computer picked ${computerMove}. Scissors cuts Paper! You lose!`
-          );
-        }
+        playGame("Paper");
       });
 
       //   For Scissors
 
       scissors.addEventListener("click", function () {
-        let randomComputerPick = Math.floor(Math.random() * 3);
-        let computerMove = potentialMoves[randomComputerPick];
-        result = "";
-        if (computerMove === "Rock") {
-          result = "lose";
-          console.log(result);
-          alert(
-            `You picked Scissors. Computer picked ${computerMove}. Rock crushes Scissors! You lose!`
-          );
-        } else if (computerMove === "Paper") {
-          result = "win";
-          console.log(result);
-          alert(
-            `You picked Scissors. Computer picked ${computerMove}. Scissors cuts Paper! You Win`
-          );
-        } else if (computerMove === "Scissors") {
-          result = "tie";
-          console.log(result);
-          alert(
-            `You picked Scissors. Computer picked ${computerMove}. You both tie!`
-          );
-        }
+        playGame("Scissors");
       });
     </script>
   </body>
