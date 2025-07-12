@@ -66,78 +66,63 @@
       const clear = document.getElementById("clear");
 
       one.addEventListener("click", function () {
-        calculation = calculation + "1";
-        console.log(calculation);
+        updateCalculation("1");
       });
 
       two.addEventListener("click", function () {
-        calculation = calculation + "2";
-        console.log(calculation);
+        updateCalculation("2");
       });
 
       three.addEventListener("click", function () {
-        calculation = calculation + "3";
-        console.log(calculation);
+        updateCalculation("3");
       });
 
       four.addEventListener("click", function () {
-        calculation = calculation + "4";
-        console.log(calculation);
+        updateCalculation("4");
       });
 
       five.addEventListener("click", function () {
-        calculation = calculation + "5";
-        console.log(calculation);
+        updateCalculation("5");
       });
 
       six.addEventListener("click", function () {
-        calculation = calculation + "6";
-        console.log(calculation);
+        updateCalculation("6");
       });
 
       seven.addEventListener("click", function () {
-        calculation = calculation + "7";
-        console.log(calculation);
+        updateCalculation("7");
       });
 
       eight.addEventListener("click", function () {
-        calculation = calculation + "8";
-        console.log(calculation);
+        updateCalculation("8");
       });
 
       nine.addEventListener("click", function () {
-        calculation = calculation + "9";
-        console.log(calculation);
+        updateCalculation("9");
       });
 
       zero.addEventListener("click", function () {
-        calculation = calculation + "0";
-        console.log(calculation);
+        updateCalculation("0");
       });
 
       plus.addEventListener("click", function () {
-        calculation = calculation + " + ";
-        console.log(calculation);
+        updateCalculation(" + ");
       });
 
       minus.addEventListener("click", function () {
-        calculation = calculation + " - ";
-        console.log(calculation);
+        updateCalculation(" - ");
       });
 
       multiplication.addEventListener("click", function () {
-        calculation = calculation + " * ";
-        console.log(calculation);
+        updateCalculation(" * ");
       });
 
       dot.addEventListener("click", function () {
-        calculation = calculation + ".";
-        console.log(calculation);
+        updateCalculation(".");
       });
 
       divide.addEventListener("click", function () {
-        calculation = calculation + " / ";
-        console.log(calculation);
+        updateCalculation(" / ");
       });
 
       equals.addEventListener("click", function () {
@@ -149,6 +134,11 @@
         calculation = "";
         console.log("Cleared");
       });
+
+      function updateCalculation(value) {
+        calculation += value;
+        console.log(calculation);
+      }
     </script>
   </body>
 </html>

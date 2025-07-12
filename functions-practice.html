@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting Function</title>
+  </head>
+  <body>
+    <main>
+      <h1></h1>
+    </main>
+    <script>
+      // Greetings Function
+      function greet(name = "Pamela") {
+        return `Hello ${name}`;
+      }
+
+      console.log(greet("Isioma"));
+      console.log(greet("Adebare"));
+      console.log(greet("Peter"));
+      console.log(greet("Baby"));
+      console.log(greet());
+
+      // Celsius to Fahrenheit Function
+      function convertToFahrenheit(celsius) {
+        const fahrenheit = (celsius * 9) / 5 + 32;
+        return fahrenheit;
+      }
+
+      console.log(convertToFahrenheit(25));
+      console.log(convertToFahrenheit(37));
+      console.log(convertToFahrenheit(40));
+      console.log(convertToFahrenheit(32));
+      console.log(convertToFahrenheit(35));
+
+      //Fahrenheit to Celsius
+      function convertToCelsius(fahrenheit) {
+        const celsius = ((fahrenheit - 32) * 5) / 9;
+        return celsius;
+      }
+
+      console.log(convertToCelsius(86));
+
+      // Temperature Converter
+      function convertTemperature(degrees, unit) {
+        if (unit === "C") {
+          const result = convertToFahrenheit(degrees);
+          return `${result}F`;
+        } else if (unit === "F") {
+          const result = convertToCelsius(degrees);
+          return `${result}C`;
+        }
+      }
+
+      console.log(convertTemperature(25, "C"));
+      console.log(convertTemperature(105, "F"));
+
+      // Length Converter
+
+      function convertLength(length, from, to) {
+        if (from === "km" && to === "miles") {
+          const result = length / 1.6;
+          return result + to;
+        } else if (from === "miles" && to === "km") {
+          const result = length * 1.6;
+          return result + to;
+        } else if (from === "miles" && to === "ft") {
+          const result = length * 5280;
+          return result + to;
+        } else if (from === "km" && to === "ft") {
+          const result = length * 3281;
+          return result + to;
+        } else {
+          return `invalid unit: ${to}`;
+        }
+      }
+
+      console.log(convertLength(60, "miles", "km"));
+      console.log(convertLength(32, "km", "miles"));
+      console.log(convertLength(50, "km", "miles"));
+
+      console.log(convertLength(5, "miles", "km"));
+      console.log(convertLength(5, "miles", "ft"));
+      console.log(convertLength(5, "km", "ft"));
+
+      console.log(convertLength(5, "km", "lbs"));
+    </script>
+  </body>
+</html>
