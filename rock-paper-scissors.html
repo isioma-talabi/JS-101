@@ -17,17 +17,55 @@
       <button id="rock">Rock</button>
       <button id="paper">Paper</button>
       <button id="scissors">Scissors</button>
+      <button id="reset-score">Reset Score</button>
+
+      <section>
+        <h2>Game Progress:</h2>
+        <b>Wins:</b>
+        <p id="win-score"></p>
+        <b>Losses:</b>
+        <p id="loss-score"></p>
+        <b>Ties:</b>
+        <p id="tie-score"></p>
+      </section>
     </main>
 
     <script>
       const rock = document.getElementById("rock");
       const paper = document.getElementById("paper");
       const scissors = document.getElementById("scissors");
+      const resetScore = document.getElementById("reset-score");
 
+      // To record wins, losses and ties
+      const winCount = document.getElementById("win-score");
+      const lossCount = document.getElementById("loss-score");
+      const tieCount = document.getElementById("tie-score");
+
+      // Potential Moves of the Computer stored in an array
       const potentialMoves = ["Rock", "Paper", "Scissors"];
       let result = "";
+      let counter = "";
 
-      // Functions
+      // Note: that JSON.parse(localStorage.getItem("score")); is basically the gameProgress object saved in local storage
+
+      let gameProgress = JSON.parse(localStorage.getItem("score"));
+
+      /* It is important to do this code below because when you set localStorage.removeItem() in the reset btn,
+      it removes score and gameProgress becomes null. It is important to reset it when this happens */
+      if (gameProgress === null) {
+        gameProgress = {
+          wins: 0,
+          losses: 0,
+          ties: 0,
+        };
+      }
+
+      // Will set the scores on the page to what is currently stored in local storage
+      winCount.innerHTML = gameProgress.wins;
+      lossCount.innerHTML = gameProgress.losses;
+      tieCount.innerHTML = gameProgress.ties;
+
+      // Functions for the game
       function pickComputerMove() {
         let randomComputerPick = Math.floor(Math.random() * 3);
         let computerMove = potentialMoves[randomComputerPick];
@@ -36,47 +74,60 @@
 
       function playGame(playerMove) {
         const computerMove = pickComputerMove();
-        result = "";
+        // result = "";
 
         if (playerMove === "Rock") {
           if (computerMove === "Rock") {
             result = "You both tie!";
+            counter = "tie";
             console.log(result);
           } else if (computerMove === "Paper") {
             result = "Paper covers Rock! You lose!";
+            counter = "lose";
             console.log(result);
           } else if (computerMove === "Scissors") {
             result = "Rock crushes scissors! You win!";
+            counter = "win";
             console.log(result);
           }
         } else if (playerMove === "Paper") {
           if (computerMove === "Rock") {
             result = "Paper covers Rock! You win!";
+            counter = "win";
             console.log(result);
           } else if (computerMove === "Paper") {
             result = "You both tie!";
+            counter = "tie";
             console.log(result);
           } else if (computerMove === "Scissors") {
             result = "Scissors cuts Paper! You lose!";
+            counter = "lose";
             console.log(result);
           }
         } else if (playerMove === "Scissors") {
           if (computerMove === "Rock") {
             result = "Rock crushes Scissors! You lose!";
+            counter = "lose";
             console.log(result);
           } else if (computerMove === "Paper") {
             result = "Scissors cuts Paper! You Win";
+            counter = "win";
             console.log(result);
           } else if (computerMove === "Scissors") {
             result = "You both tie!";
+            counter = "tie";
             console.log(result);
           }
         }
+
+        updateGameProgress();
 
         alert(
           `You picked ${playerMove}. Computer picked ${computerMove}. ${result}`
         );
       }
+
+      // Event Listeners for the Buttons
 
       //   For Rock
 
@@ -95,6 +146,51 @@
       scissors.addEventListener("click", function () {
         playGame("Scissors");
       });
+
+      // Function to capture counts
+
+      function updateGameProgress() {
+        if (counter === "win") {
+          gameProgress.wins += 1;
+          winCount.innerHTML = gameProgress.wins;
+        } else if (counter === "lose") {
+          gameProgress.losses += 1;
+          lossCount.innerHTML = gameProgress.losses;
+        } else if (counter === "tie") {
+          gameProgress.ties += 1;
+          tieCount.innerHTML = gameProgress.ties;
+        }
+        // This sets the gameProgress to local storage by turning the object into a JSON object.
+        localStorage.setItem("score", JSON.stringify(gameProgress));
+      }
+
+      // Function and Event Listener for Resetting the Score
+      function resetScoreAction() {
+        gameProgress.wins = 0;
+        gameProgress.losses = 0;
+        gameProgress.ties = 0;
+        winCount.innerHTML = gameProgress.wins;
+        lossCount.innerHTML = gameProgress.losses;
+        tieCount.innerHTML = gameProgress.ties;
+        localStorage.removeItem("score");
+      }
+
+      resetScore.addEventListener("click", function () {
+        resetScoreAction();
+      });
+
+      // Lessons:
+      // Learning Local Storage
+      /* As a precursor to learning local storage, 
+      it is important to know about the JSON objects 
+      and 2 methods that it contains- JSON.stringify() and JSON.parse().
+      JSON.stringify() turns the content of the Javascript Object into 
+      a JSON object made up of strings (except the methods contained in an object).
+      While JSON.parse() turns a JSON object back into a Javascript object. */
+
+      console.log(JSON);
+      console.log(JSON);
+      console.log(localStorage);
     </script>
   </body>
 </html>
