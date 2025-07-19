@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Objects Practice</title>
+  </head>
+  <body>
+    <script>
+      // 8a - 8c
+      const basketballProduct1 = {
+        name: "Adidas Basketball",
+        price: 2095,
+      };
+
+      basketballProduct1.price += 500;
+      basketballProduct1["delivery-time"] = "3 days";
+
+      console.log(basketballProduct1);
+
+      //  8d
+      const jersey1 = {
+        name: "Adidas Jersey",
+        price: 2300,
+      };
+
+      const jersey2 = {
+        name: "Nike Jersey",
+        price: 4500,
+      };
+
+      function comparePrice(product1, product2) {
+        if (product1.price < product2.price) {
+          console.log(
+            `The cheaper product is ${product1.name} for ${product1.price}`
+          );
+        } else if (product2.price < product1.price) {
+          console.log(
+            `The cheaper product is ${product2.name} for ${product2.price}`
+          );
+        }
+      }
+      comparePrice(jersey1, jersey2);
+
+      //   8e
+      const earrings1 = {
+        name: "Dune Earrings",
+        price: 980,
+      };
+
+      const earrings2 = {
+        name: "Dune Earrings",
+        price: 981,
+      };
+
+      function isSameProduct(product1, product2) {
+        if (
+          product1.name === product2.name &&
+          product1.price === product2.price
+        ) {
+          console.log(true);
+        } else {
+          console.log(false);
+        }
+      }
+
+      isSameProduct(earrings1, earrings2);
+
+      // 8f & 8g
+
+      let message = "Good Morning";
+      let greeting = "HALLO HALLO";
+
+      function lowerCaseConverter(strings) {
+        let lowerCase = strings.toLowerCase();
+        console.log(lowerCase);
+      }
+
+      lowerCaseConverter(message);
+      lowerCaseConverter(greeting);
+
+      function repeatStringConverter(string) {
+        let result = string.repeat(5);
+        console.log(result);
+      }
+
+      repeatStringConverter(message);
+
+      
+    </script>
+  </body>
+</html>

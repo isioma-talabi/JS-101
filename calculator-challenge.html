@@ -46,7 +46,12 @@
     </main>
 
     <script>
-      let calculation = "";
+      let calculation = JSON.parse(localStorage.getItem("calc"));
+
+      if (calculation === null) {
+        calculation = "";
+      }
+
       const one = document.getElementById("one");
       const two = document.getElementById("two");
       const three = document.getElementById("three");
@@ -131,6 +136,7 @@
       });
 
       clear.addEventListener("click", function () {
+        localStorage.removeItem("calc");
         calculation = "";
         console.log("Cleared");
       });
@@ -138,6 +144,7 @@
       function updateCalculation(value) {
         calculation += value;
         console.log(calculation);
+        localStorage.setItem("calc", JSON.stringify(calculation));
       }
     </script>
   </body>
