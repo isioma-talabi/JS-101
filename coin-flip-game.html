@@ -4,17 +4,74 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coin Flip Game (Ternary Operator)</title>
+    <style>
+      button {
+        padding: 20px;
+        background-color: blueviolet;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
   </head>
   <body>
-    <main></main>
-    <script>
-      let guess = "Heads";
-      let randomNumber = Math.random();
-      let result = randomNumber < 0.5 ? "Heads" : "Tails";
-      let guessGame = guess === result ? "You win!" : "You Lose!";
+    <main>
+      <h1>Tough Decisions? Flip a coin to decide!</h1>
+      <button id="heads">Heads</button>
+      <button id="tails">Tails</button>
+      <h2 id="messageDisplay"></h2>
 
-      console.log(result);
-      console.log(guessGame);
+      <h3 id="scores"></h3>
+    </main>
+    <script>
+      const headsBtn = document.getElementById("heads");
+      const tailsBtn = document.getElementById("tails");
+      const messageDisplay = document.getElementById("messageDisplay");
+      const scores = document.getElementById("scores");
+
+      // let guess = "";
+      let guessGame = "";
+
+      let scoreBoard = JSON.parse(localStorage.getItem("gameScores"));
+
+      if (scoreBoard === null) {
+        scoreBoard = {
+          wins: 0,
+          losses: 0,
+        };
+      }
+
+      scores.innerHTML = `Wins: ${scoreBoard.wins}, Losses: ${scoreBoard.losses}`;
+
+      function playGame(guess) {
+        let randomNumber = Math.random();
+        let result = randomNumber < 0.5 ? "Heads" : "Tails";
+        guessGame = guess === result ? "You win!" : "You Lose!";
+        messageDisplay.innerHTML = `${result}, ${guessGame}`;
+      }
+
+      function scoreTracker() {
+        if (guessGame === "You win!") {
+          scoreBoard.wins += 1;
+        } else if (guessGame === "You Lose!") {
+          scoreBoard.losses += 1;
+        }
+
+        scores.innerHTML = `Wins: ${scoreBoard.wins}, Losses: ${scoreBoard.losses}`;
+        localStorage.setItem("gameScores", JSON.stringify(scoreBoard));
+      }
+
+      headsBtn.addEventListener("click", function () {
+        // guess = "Heads";
+        playGame("Heads");
+        scoreTracker();
+      });
+
+      tailsBtn.addEventListener("click", function () {
+        // guess = "Tails";
+        playGame("Tails");
+        scoreTracker();
+      });
     </script>
   </body>
 </html>
