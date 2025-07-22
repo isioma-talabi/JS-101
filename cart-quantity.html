@@ -19,6 +19,8 @@
     <button id="add-three">+3</button>
     <button id="reset-cart">Reset Cart</button>
 
+    <p id="display-cart-quantity"></p>
+
     <!-- Add remove from cart, -2 and -3 buttons and add JS functionalities that will check cart does not go below 0 -->
 
     <script>
@@ -29,6 +31,11 @@
       const addTwo = document.getElementById("add-two");
       const addThree = document.getElementById("add-three");
       const resetCart = document.getElementById("reset-cart");
+      const displayCartQuantity = document.getElementById(
+        "display-cart-quantity"
+      );
+
+      displayCartQuantity.innerText = `Current Cart Value is ${cartValue}`;
 
       showQuantityBtn.addEventListener("click", function () {
         console.log("Cart Quantity: ", cartValue);
@@ -37,7 +44,8 @@
       // Add One
       addToCart.addEventListener("click", function () {
         if (cartValue < 10) {
-          console.log("Cart Quantity: ", (cartValue = cartValue + 1));
+          displayCartQuantity.innerText = `Cart Quantity: ${(cartValue += 1)}`;
+          // console.log("Cart Quantity: ", (cartValue = cartValue + 1));
         } else {
           alert("10 items in the cart! The cart is full!");
         }
@@ -47,7 +55,8 @@
 
       addTwo.addEventListener("click", function () {
         if (cartValue < 10) {
-          console.log("Cart Quantity: ", (cartValue = cartValue + 2));
+          displayCartQuantity.innerText = `Cart Quantity: ${(cartValue += 2)}`;
+          // console.log("Cart Quantity: ", (cartValue = cartValue + 2));
         } else {
           alert("10 items in the cart! The cart is full!");
         }
@@ -57,7 +66,8 @@
 
       addThree.addEventListener("click", function () {
         if (cartValue < 9) {
-          console.log("Cart Quantity: ", (cartValue = cartValue + 3));
+          displayCartQuantity.innerText = `Cart Quantity: ${(cartValue += 3)}`;
+          // console.log("Cart Quantity: ", (cartValue = cartValue + 3));
         } else if ((cartValue = 9)) {
           alert("Can only have 10 items in the cart!");
           console.log("Cart Quantity: ", cartValue);
@@ -66,6 +76,7 @@
 
       resetCart.addEventListener("click", function () {
         cartValue = 0;
+        displayCartQuantity.innerText = `Cart Quantity: ${cartValue}`;
         console.log("Cart was reset");
         console.log("Cart Quantity: ", cartValue);
       });

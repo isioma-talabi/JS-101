@@ -9,11 +9,18 @@
       button {
         padding: 20px;
       }
+
+      #display-calculation {
+        font-size: 40px;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
     <h1>Calculator</h1>
     <main>
+      <p id="display-calculation"></p>
+
       <button id="one">1</button>
       <button id="two">2</button>
       <button id="three">3</button>
@@ -69,6 +76,9 @@
       const equals = document.getElementById("equals");
       const divide = document.getElementById("divide");
       const clear = document.getElementById("clear");
+      const displayCalculation = document.getElementById("display-calculation");
+
+      displayCalculation.innerHTML = calculation;
 
       one.addEventListener("click", function () {
         updateCalculation("1");
@@ -132,18 +142,21 @@
 
       equals.addEventListener("click", function () {
         calculation = eval(calculation);
-        console.log(calculation);
+        displayCalculation.innerHTML = calculation;
+        // console.log(calculation);
       });
 
       clear.addEventListener("click", function () {
         localStorage.removeItem("calc");
         calculation = "";
+        displayCalculation.innerHTML = calculation;
         console.log("Cleared");
       });
 
       function updateCalculation(value) {
         calculation += value;
-        console.log(calculation);
+        displayCalculation.innerHTML = calculation;
+        // console.log(calculation);
         localStorage.setItem("calc", JSON.stringify(calculation));
       }
     </script>
