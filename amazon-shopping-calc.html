@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amazon Shopping Calculator</title>
+  </head>
+  <body>
+    <h1>Amazon Shopping Calculator</h1>
+    <p>Orders under $40 = +$10 shipping.</p>
+    <p>Orders over $40 = FREE shipping.</p>
+
+    <input type="text" placeholder="Cost of order" />
+    <button id="calculate">Calculate</button>
+
+    <p id="display-cost"></p>
+
+    <!-- 9h -->
+    <input
+      type="text"
+      placeholder="Write anything"
+      id="input-text"
+      pattern="[0-9. -]*"
+    />
+    <p id="display-text"></p>
+
+    <script>
+      const calculateBtn = document.getElementById("calculate");
+      const inputBox = document.querySelector("input");
+      const displayCost = document.getElementById("display-cost");
+
+      calculateBtn.addEventListener("click", function () {
+        if (inputBox.value < 40) {
+          let result = Number(inputBox.value) + 10;
+          displayCost.innerText = `Your total cost is $${result}`;
+        } else if (inputBox.value) {
+          displayCost.innerText = `Your total cost is $${inputBox.value}`;
+        }
+      });
+
+      const displayText = document.getElementById("display-text");
+      const inputText = document.getElementById("input-text");
+
+      inputText.addEventListener("keyup", function () {
+        displayText.innerText = inputText.value;
+      });
+    </script>
+  </body>
+</html>

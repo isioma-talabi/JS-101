@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Practice</title>
+
+    <style>
+      #subscribe-btn {
+        color: white;
+        background-color: black;
+        margin: 10px;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 20px;
+        border: none;
+      }
+
+      .heads-btn,
+      .tails-btn {
+        margin: 10px;
+        background-color: green;
+        color: white;
+        padding: 20px;
+        font-size: 20px;
+        border: none;
+        border-radius: 10px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+
+      input {
+        height: 30px;
+        width: 250px;
+        margin-top: 30px;
+      }
+
+      #submit-btn {
+        height: 35px;
+        width: 130px;
+        background-color: goldenrod;
+        border: none;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Subscribe Button Exercise -->
+    <button id="subscribe-btn">Subscribe</button>
+
+    <br />
+
+    <!-- Heads & Tails Exercise -->
+    <button class="heads-btn">Heads</button>
+    <button class="tails-btn">Tails</button>
+
+    <p id="display-text-ht"></p>
+
+    <!-- Name Submission Exercise -->
+
+    <input type="text" placeholder="Write your name" />
+    <button id="submit-btn">Submit</button>
+
+    <p id="display-name"></p>
+
+    <script>
+      // Subscribe Button Exercise
+      const subscribeBtn = document.getElementById("subscribe-btn");
+
+      subscribeBtn.addEventListener("click", function () {
+        if (subscribeBtn.innerText === "Subscribe") {
+          subscribeBtn.innerText = "Subscribed";
+          subscribeBtn.style.backgroundColor = "red";
+        } else if (subscribeBtn.innerText === "Subscribed") {
+          subscribeBtn.innerText = "Subscribe";
+          subscribeBtn.style.backgroundColor = "black";
+        }
+      });
+
+      //   Heads & Tails Exercise
+
+      const headsBtn = document.querySelector(".heads-btn");
+      const tailsBtn = document.querySelector(".tails-btn");
+      const displayTextHT = document.getElementById("display-text-ht");
+
+      headsBtn.addEventListener("click", function () {
+        displayTextHT.innerText = `You chose: Heads`;
+      });
+
+      tailsBtn.addEventListener("click", function () {
+        displayTextHT.innerText = `You chose: Tails`;
+      });
+
+      // Name Submission Exercise
+      const inputName = document.querySelector("input");
+      const displayName = document.getElementById("display-name");
+      const submitBtn = document.getElementById("submit-btn");
+
+      let name = "";
+
+      submitBtn.addEventListener("click", function () {
+        name = inputName.value;
+        displayName.innerText = `Your name is: ${name}`;
+      });
+
+      inputName.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          name = inputName.value;
+          displayName.innerText = `Your name is: ${name}`;
+        }
+        console.log(event);
+      });
+    </script>
+  </body>
+</html>
