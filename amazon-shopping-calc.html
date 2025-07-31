@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amazon Shopping Calculator</title>
+
+    <style>
+      .error-style {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <h1>Amazon Shopping Calculator</h1>
@@ -30,11 +36,16 @@
       const displayCost = document.getElementById("display-cost");
 
       calculateBtn.addEventListener("click", function () {
-        if (inputBox.value < 40) {
+        if (inputBox.value < 0) {
+          displayCost.innerText = `Error: Cost cannot be less than $0`;
+          displayCost.classList.add("error-style");
+        } else if (inputBox.value < 40) {
           let result = Number(inputBox.value) + 10;
+          displayCost.classList.remove("error-style");
           displayCost.innerText = `Your total cost is $${result}`;
         } else if (inputBox.value) {
           displayCost.innerText = `Your total cost is $${inputBox.value}`;
+          displayCost.classList.remove("error-style");
         }
       });
 

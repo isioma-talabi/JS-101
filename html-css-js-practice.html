@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML, CSS & Javascript Together</title>
+
+    <style>
+      .amazon-btn {
+        padding: 10px 70px;
+        border-radius: 25px;
+        border: none;
+        font-size: 15px;
+        background-color: rgb(255, 216, 20);
+        cursor: pointer;
+      }
+
+      .request-btn {
+        padding: 15px 30px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+        background-color: black;
+        color: white;
+        margin-right: 15px;
+        cursor: pointer;
+      }
+
+      .schedule-btn {
+        padding: 15px 40px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+        background-color: rgb(230, 230, 230);
+        cursor: pointer;
+      }
+
+      .toggle-btns {
+        padding: 15px 40px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+      }
+
+      .is-toggled {
+        background-color: rgb(230, 230, 230);
+        color: black;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 5px;
+      }
+      .toggle-btns-modified {
+        padding: 15px 40px;
+        font-weight: bold;
+        border-radius: 5px;
+        border: none;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Amazon Button</p>
+    <button class="amazon-btn">Add to Cart</button>
+    <p>Uber Buttons</p>
+    <button class="request-btn">Request now</button>
+    <button class="schedule-btn">Schedule for later</button>
+
+    <p>Gaming Button</p>
+    <button class="toggle-btns js-game-btn">Gaming</button>
+
+    <button class="toggle-btns js-music-btn">Music</button>
+
+    <button class="toggle-btns js-tech-btn">Tech</button>
+
+    <p>Other Buttons</p>
+
+    <button class="toggle-btns-modified is-toggled js-banking-btn">
+      Banking
+    </button> 
+
+    <button class="is-toggled js-finance-btn">Finance</button>
+
+    <button class="is-toggled js-economics-btn">Economics</button>
+
+    <script>
+      const amazonBtn = document.querySelector(".amazon-btn");
+      const gameBtn = document.querySelector(".js-game-btn");
+      const musicBtn = document.querySelector(".js-music-btn");
+      const techBtn = document.querySelector(".js-tech-btn");
+      const bankingBtn = document.querySelector(".js-banking-btn");
+      const financeBtn = document.querySelector(".js-finance-btn");
+      const economicsBtn = document.querySelector(".js-economics-btn");
+
+      gameBtn.addEventListener("click", function () {
+        gameBtn.classList.toggle("is-toggled");
+      });
+
+      musicBtn.addEventListener("click", function () {
+        musicBtn.classList.toggle("is-toggled");
+      });
+
+      techBtn.addEventListener("click", function () {
+        techBtn.classList.toggle("is-toggled");
+      });
+
+      //   Modified Toggle
+      bankingBtn.addEventListener("click", function () {
+        bankingBtn.classList.add("toggle-btns-modified");
+        financeBtn.classList.remove("toggle-btns-modified");
+        economicsBtn.classList.remove("toggle-btns-modified");
+      });
+
+      financeBtn.addEventListener("click", function () {
+        bankingBtn.classList.remove("toggle-btns-modified");
+        economicsBtn.classList.remove("toggle-btns-modified");
+        financeBtn.classList.add("toggle-btns-modified");
+      });
+
+      economicsBtn.addEventListener("click", function () {
+        bankingBtn.classList.remove("toggle-btns-modified");
+        financeBtn.classList.remove("toggle-btns-modified");
+        economicsBtn.classList.add("toggle-btns-modified");
+      });
+
+      console.log(amazonBtn.classList.contains("amazon-btn"));
+    </script>
+  </body>
+</html>
