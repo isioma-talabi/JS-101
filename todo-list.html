@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List App</title>
+    <style>
+      input {
+        padding: 9px;
+        width: 250px;
+      }
+
+      button {
+        padding: 10px;
+        width: 60px;
+        background-color: green;
+        border: none;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>To Do List Practice 1</h1>
+    <input type="text" placeholder="Todo name" id="inputbox-1" />
+    <button id="task-btn-1">Add</button>
+
+    <ol id="task-list-1"></ol>
+    <script>
+      const inputBoxOne = document.getElementById("inputbox-1");
+      const taskBtnOne = document.getElementById("task-btn-1");
+      const taskListsOne = document.getElementById("task-list-1");
+
+      let listOfTasks = [];
+
+      taskBtnOne.addEventListener("click", function () {
+        taskListsOne.textContent = ""; //Had to do this because the whole array kept re-rendering multiple times causing duplications.
+        const value = inputBoxOne.value;
+        listOfTasks.push(value);
+
+        //Used a for...of loop which is better for looping through a collection of items in an array
+
+        for (const list of listOfTasks) {
+          const li = document.createElement("li");
+          li.textContent = list;
+          taskListsOne.appendChild(li);
+        }
+
+        inputBoxOne.value = "";
+        console.log(listOfTasks);
+      });
+    </script>
+  </body>
+</html>
