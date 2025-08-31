@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrays & Loops Exercise</title>
+  </head>
+  <body>
+    <script>
+      // 11a execute a push()
+      const nums = [10, 20, 30];
+      nums.push(99);
+      console.log(nums);
+
+      //11b execute a function that gives the last item in array
+      const arrayOne = [1, 20, 24, 5];
+      const arrayTwo = ["hi", "hello", "good"];
+
+      function getLastValue(array) {
+        let lastIndex = array[array.length - 1];
+        return lastIndex;
+      }
+
+      console.log(getLastValue(nums));
+      console.log(getLastValue(arrayOne));
+      console.log(getLastValue(arrayTwo));
+
+      //11c executes a reverse()
+      function arraySwap(array) {
+        let reversedArray = array.reverse();
+        return reversedArray;
+      }
+
+      console.log(arraySwap(arrayOne));
+      console.log(arraySwap(arrayTwo));
+      console.log(arraySwap(nums));
+
+      //11d creates a loop that counts to 10 but increments by 2
+      for (let i = 0; i <= 10; i += 2) {
+        console.log(i);
+      }
+
+      //11e creates a loop that counts down from 5 to 0
+      for (let i = 5; i >= 0; i -= 1) {
+        console.log(i);
+      }
+
+      //11f while loops of d and e
+      let a = 0;
+      while (a < 10) {
+        a += 2;
+        console.log(a);
+      }
+
+      let b = 6;
+      while (b > 0) {
+        b -= 1;
+        console.log(b);
+      }
+
+      //11g creates a loop that takes an array and creates a new array where each number is increased by 1
+      let arrayThree = [1, 2, 3];
+      let arrayFour = [];
+
+      for (i = 0; i < arrayThree.length; i++) {
+        let newValue = arrayThree[i] + 1;
+        arrayFour.push(newValue);
+      }
+
+      console.log(arrayFour);
+
+      //11h Try using the Map method for this test
+      let arrayFive = [-2, -1, 0, 99];
+
+      function addOne(array) {
+        let mappedArray = array.map((x) => x + 1);
+        return mappedArray;
+      }
+
+      console.log(addOne(nums));
+      console.log(addOne(arrayOne));
+      console.log(addOne(arrayThree));
+      console.log(addOne(arrayFive));
+
+      //11i
+      function addNum(array, num) {
+        let addNumArray = array.map((x) => x + num);
+        return addNumArray;
+      }
+
+      console.log(addNum(arrayOne, 3));
+      console.log(addNum(arrayThree, 3));
+      console.log(addNum(arrayFive, 3));
+
+      //11j
+      let arrayA = [1, 1, 2];
+      let arrayB = [1, 1, 3];
+
+      function addArrays(array1, array2) {
+        const arrayC = array1.map((x, index) => x + array2[index]);
+        return arrayC;
+      }
+
+      //or
+
+      function addArrays2(array1, array2) {
+        const arrayC = [];
+        for (i = 0; i < array1.length; i++) {
+          let summedArray = array1[i] + array2[i];
+          arrayC.push(summedArray);
+        }
+        return arrayC;
+      }
+
+      console.log(addArrays(arrayA, arrayB));
+      console.log(addArrays2(arrayA, arrayB));
+
+      //11k
+      //Algorithm
+
+      /*
+      1. create an array that collects the positive integer numbers
+      2. create a for loop that loops all through the whole array
+      3. create an if statement that checks if an element is greater than 0. if yes, push to the array, if no, don't push.
+      4. check for the length of the array with the collected elements. store in a value. return that value.
+
+      */
+
+      const testArray1 = [-1, 2, -3, 9, 8, 4, -3, 5];
+      const testArray2 = [1, -2, 3, -9, 8, 4, -6, -5, 7, 9, 6];
+
+      function countPositive(nums) {
+        const positiveNums = [];
+        for (let i = 0; i < nums.length; i++) {
+          if (nums[i] > 0) {
+            positiveNums.push(nums[i]);
+          }
+        }
+        return positiveNums.length;
+      }
+
+      console.log(countPositive(testArray2));
+      console.log(countPositive(testArray1));
+      console.log(countPositive([1, -3, 5]));
+
+      //11l & m
+
+      const testArray3 = [10, 50, 30, 40, 20, 3];
+      const testArray5 = [5, 10, 15, 80, 25, 30, 28, 40];
+
+      function minMax(nums) {
+        let minimum = nums[0];
+        let maximum = nums[0];
+
+        for (let i = 0; i < nums.length; i++) {
+          if (nums[i] > maximum) {
+            maximum = nums[i];
+          } else if (nums[i] < minimum) {
+            minimum = nums[i];
+          }
+        }
+
+        if (nums.length === 0) {
+          minimum = null;
+          maximum = null;
+        }
+
+        if (nums.length === 1) {
+          minimum = nums[0];
+          maximum = nums[0];
+        }
+
+        return { minimum, maximum };
+      }
+
+      console.log(minMax(testArray3));
+      console.log(minMax(testArray2));
+      console.log(minMax(testArray5));
+
+      console.log(minMax([]));
+      console.log(minMax([9]));
+
+      //11m
+
+      /*
+      Correct logic for this is:
+      What you really want is:
+	•	If the word already exists → increment it.
+	•	If it doesn’t exist yet → set it to 1.
+    Also here, bracket notation (not dot notation) was used to dynamically update the object.
+
+    The version that matches my mental logic is:
+
+    function countWords(words) {
+    const itemCount = {};
+
+    for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+
+    // Check if it's the first time
+    if (itemCount[word] === undefined) {
+      // ✅ First time → set to 1
+      itemCount[word] = 1;
+        } else {
+      // 🚀 Not first time → add 1
+      itemCount[word]++;
+        }
+    }
+
+    return itemCount;
+    }
+
+    The object itself is the memory. The loop doesn’t “remember” — it just checks the object each time.
+      */
+
+      const fruitArray = ["apple", "grape", "grape", "carrot", "apple", "banana"];
+
+      function countWords(words) {
+        const itemCount = {};
+        for (let i = 0; i < words.length; i++) {
+          const word = words[i];
+          if (itemCount[word]) {
+            itemCount[word]++; // seen before → add 1
+          } else {
+            itemCount[word] = 1; // seen first time → set to 1
+          }
+        }
+        return itemCount;
+      }
+
+      console.log(countWords(fruitArray));
+    </script>
+  </body>
+</html>
