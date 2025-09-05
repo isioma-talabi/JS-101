@@ -11,7 +11,11 @@
         font-family: "Lato" sans-serif;
       }
       .container {
-        width: 450px;
+        width: 800px;
+      }
+      .inputs-container {
+        display: flex;
+        justify-content: space-between;
       }
       input {
         padding: 9px;
@@ -37,9 +41,14 @@
         display: inline-block;
       }
 
+      /* #task-list-1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      } */
+ 
       li {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 352px 350px 100px;
         margin-bottom: 10px;
       }
     </style>
@@ -47,8 +56,11 @@
   <body>
     <h1>To Do List Practice 1</h1>
     <div class="container">
-      <input type="text" placeholder="Todo name" id="inputbox-1" />
-      <button type="button" class="add-btn" id="task-btn-1">Add</button>
+      <div class="inputs-container">
+        <input type="text" placeholder="Todo name" id="inputbox-1" />
+        <input type="date" id="js-date-input" />
+        <button type="button" class="add-btn" id="task-btn-1">Add</button>
+      </div>
 
       <ol id="task-list-1"></ol>
     </div>
@@ -57,29 +69,43 @@
       const inputBoxOne = document.getElementById("inputbox-1");
       const taskBtnOne = document.getElementById("task-btn-1");
       const taskListsOne = document.getElementById("task-list-1");
+      const inputDate = document.getElementById("js-date-input");
 
       let listOfTasks = [];
 
       taskBtnOne.addEventListener("click", function () {
         const value = inputBoxOne.value.trim();
+        const dateValue = inputDate.value;
 
-        if (value === "") {
+        if (value === "" || dateValue === "") {
           return;
         } else {
-          listOfTasks.push(value);
+          listOfTasks.push({ value, dateValue });
           taskListsOne.textContent = "";
 
           //Used a for...of loop which is better for looping through a collection of items in an array
-          for (const list of listOfTasks) {
+          for (let i = 0; i < listOfTasks.length; i++) {
+            const tasks = listOfTasks[i];
+
             const li = document.createElement("li");
-            li.textContent = list;
+            li.textContent = tasks.value;
             taskListsOne.appendChild(li);
+
+            const span = document.createElement("span");
+            span.textContent = new Date(tasks.dateValue).toLocaleDateString();
+            li.appendChild(span);
 
             const deleteBtn = document.createElement("button");
             deleteBtn.innerHTML = "Delete";
             deleteBtn.classList.add("js-delete-btn");
             li.appendChild(deleteBtn);
+
+            deleteBtn.addEventListener("click", function () {
+              listOfTasks.splice(i, 1);
+              taskListsOne.removeChild(li);
+            });
           }
+          console.log(dateValue);
         }
         inputBoxOne.value = "";
         console.log(listOfTasks);
