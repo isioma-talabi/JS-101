@@ -45,7 +45,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
       } */
- 
+
       li {
         display: grid;
         grid-template-columns: 352px 350px 100px;
@@ -71,43 +71,66 @@
       const taskListsOne = document.getElementById("task-list-1");
       const inputDate = document.getElementById("js-date-input");
 
-      let listOfTasks = [];
+      // Local Storage Items
+
+      const STORAGE_KEY = "todo-items";
+
+      // To Do Functionality
+
+      let listOfTasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
+      render();
+
+      try {
+        JSON.parse(localStorage.getItem(STORAGE_KEY) || []);
+      } catch {
+        listOfTasks = [];
+      }
+
+      function save() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(listOfTasks));
+      }
+
+      function render() {
+        taskListsOne.textContent = "";
+
+        //Used a for...of loop which is better for looping through a collection of items in an array
+        for (let i = 0; i < listOfTasks.length; i++) {
+          const tasks = listOfTasks[i];
+
+          const li = document.createElement("li");
+          li.textContent = tasks.value;
+          taskListsOne.appendChild(li);
+
+          const span = document.createElement("span");
+          span.textContent = new Date(tasks.dateValue).toLocaleDateString();
+          li.appendChild(span);
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.innerHTML = "Delete";
+          deleteBtn.classList.add("js-delete-btn");
+          li.appendChild(deleteBtn);
+
+          deleteBtn.addEventListener("click", function () {
+            listOfTasks.splice(i, 1);
+            taskListsOne.removeChild(li);
+            save();
+            render();
+          });
+        }
+      }
 
       taskBtnOne.addEventListener("click", function () {
         const value = inputBoxOne.value.trim();
         const dateValue = inputDate.value;
 
-        if (value === "" || dateValue === "") {
-          return;
-        } else {
-          listOfTasks.push({ value, dateValue });
-          taskListsOne.textContent = "";
+        if (!value || !dateValue) return;
 
-          //Used a for...of loop which is better for looping through a collection of items in an array
-          for (let i = 0; i < listOfTasks.length; i++) {
-            const tasks = listOfTasks[i];
+        listOfTasks.push({ value, dateValue }); //Here you push an object into an array. The object contains the todo and the date
+        save();
+        render();
 
-            const li = document.createElement("li");
-            li.textContent = tasks.value;
-            taskListsOne.appendChild(li);
-
-            const span = document.createElement("span");
-            span.textContent = new Date(tasks.dateValue).toLocaleDateString();
-            li.appendChild(span);
-
-            const deleteBtn = document.createElement("button");
-            deleteBtn.innerHTML = "Delete";
-            deleteBtn.classList.add("js-delete-btn");
-            li.appendChild(deleteBtn);
-
-            deleteBtn.addEventListener("click", function () {
-              listOfTasks.splice(i, 1);
-              taskListsOne.removeChild(li);
-            });
-          }
-          console.log(dateValue);
-        }
         inputBoxOne.value = "";
+        inputDate.value = "";
         console.log(listOfTasks);
       });
     </script>

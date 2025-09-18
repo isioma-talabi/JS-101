@@ -15,6 +15,8 @@ console.log(price)
 
 ## To set Local Storage
 
+For more on how this is used check todo-list.html
+
 To begin setting a value in local storage, you will want to save the updated value using
 
 ````js
